@@ -15,7 +15,7 @@ pub fn spawn_plants(mut commands: Commands) {
     println!("Starting plant spawn...");
     let mut rng = rand::thread_rng();
 
-    for _ in 0..50 {
+    for _ in 0..1000 {
         let x: f32 = rng.gen_range(0..100) as f32;
         let y: f32 = rng.gen_range(0..100) as f32;
         let energy: f32 = rng.gen_range(0..100) as f32;
@@ -33,11 +33,14 @@ pub fn spawn_plants(mut commands: Commands) {
 }
 
 pub fn count_trees(query: Query<(&Leaf, &Transform)>) {
+    println!("Starting tree count...");
+    let mut tree_count = 0;
     for (leaf, transform) in query.iter() {
-        println!(
-            "leaf at {} has {} energy",
-            transform.translation, leaf.energy,
-        );
+        // println!(
+        //     "leaf at {} has {} energy",
+        //     transform.translation, leaf.energy,
+        // );
+        tree_count += 1;
     }
-    println!("-----------------------\n")
+    println!("Trees: {tree_count}");
 }
